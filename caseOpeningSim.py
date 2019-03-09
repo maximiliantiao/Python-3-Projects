@@ -11,29 +11,47 @@ def walletCheckAdd():
     totalMoneySpent = 0
     costOfCase = 2
 
-    print ("Open Danger Zone case for $2?")
+    print ("\nOpen Danger Zone case for $2?")
     
-    answer1 = raw_input("Yes or No: ")
+    answer1 = raw_input("Yes or No?\n")
     
-    time.sleep(2)
-
     # checking wallet for money and adding funds if needed
 
-    if answer1 == "Yes" or answer1 == "Yes":
-	
-        if wallet > 1:
-            totalMoneySpent += 1
-            wallet -= 1
+    if answer1 == "Yes" or answer1 == "yes":
+        
+        wallet -= 2
+        
+        totalMoneySpent += 2
+        
+        time.sleep(0.8)
+        
+        print("\nWallet: $%1d" % (wallet))
+        
+        time.sleep(0.8)
+
+        print("\nCase cost: $%1d" % (costOfCase))
+        
+        time.sleep(0.8)
+        
+        print ("\nWould you like to add funds?")
+        answer2 =  raw_input("Yes or No?\n")
+        
+        time.sleep(0.8)
+               
+        if answer2 == "No" or answer2 == "no":
+            wallet -= 2
+            totalMoneySpent += 2
+            pass
+            
         else:
-            print ("Add funds to continue your purchase?")
-            answer2 = raw_input("Yes or No: ")
 		
             if answer2 == "Yes" or answer2 == "yes":
-                print ("Enter amount to add")
-                answer3  = raw_input("5 10 15 20 Custom")
+                print ("\nEnter amount to add:")
+                answer3  = int(raw_input("$5 $10 $15 $20 Custom\n"))
 
                 if answer3 == "Custom" or answer3 == "custom":
-                    answer4 = raw_input("Enter custom amount: ")
+                    answer4 = int(raw_input("Enter custom amount: "))
+                    wallet += answer4
                 else:
                     wallet += answer3
 			
@@ -41,7 +59,16 @@ def walletCheckAdd():
                 pass
             else:
                 pass
-                        
+    else:
+        pass
+    
+    time.sleep(2)
+
+    print ("\nYour Receipt:")
+    print("Wallet: $%1d" % (wallet))
+    print("Case cost: $%1d" % (costOfCase))
+    print("Total money spent: $%1d\n" % (totalMoneySpent))
+
 
 def skinGradeOdds():
 # probabilities of certain grades: blue, purple, pink, red, yellow
@@ -86,8 +113,6 @@ def skinGradeOdds():
 
 # function calling
 walletCheckAdd()
-
-skinGradeOdds()
 
 
 
