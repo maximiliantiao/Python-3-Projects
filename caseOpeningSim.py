@@ -10,55 +10,46 @@ def walletCheckAdd():
     wallet = 10
     totalMoneySpent = 0
     costOfCase = 2
+    moneyAdded = 0
+    
+    print ("\nCurrent balance: $%1d" % (wallet))
+    
+    print ("\nWould you like to add funds to open Danger Zone case?")
+    answer2 =  raw_input("Yes or No?\n")
+        
+    time.sleep(0.8)
+        
+    if answer2 == "No" or answer2 == "no":
+        wallet -= 2
+        totalMoneySpent += 2
+        pass
+        
+    else:
+            
+        if answer2 == "Yes" or answer2 == "yes":
+            print ("\nEnter amount to add:")
+            answer3  = int(raw_input("$5 $10 $15 $20 $50 $100\n"))
+            moneyAdded += answer3
+            time.sleep(1)
+            print ("\n$%1d has been added to your wallet" % (answer3))
+            time.sleep(1)
+        
+        elif answer2 == "No" or answer2 == "no":
+            pass
+        else:
+            pass
 
     print ("\nOpen Danger Zone case for $2?")
     
     answer1 = raw_input("Yes or No?\n")
     
-    # checking wallet for money and adding funds if needed
-
     if answer1 == "Yes" or answer1 == "yes":
         
         wallet -= 2
-        
         totalMoneySpent += 2
         
-        time.sleep(0.8)
+        time.sleep(1)
         
-        print("\nWallet: $%1d" % (wallet))
-        
-        time.sleep(0.8)
-
-        print("\nCase cost: $%1d" % (costOfCase))
-        
-        time.sleep(0.8)
-        
-        print ("\nWould you like to add funds?")
-        answer2 =  raw_input("Yes or No?\n")
-        
-        time.sleep(0.8)
-               
-        if answer2 == "No" or answer2 == "no":
-            wallet -= 2
-            totalMoneySpent += 2
-            pass
-            
-        else:
-		
-            if answer2 == "Yes" or answer2 == "yes":
-                print ("\nEnter amount to add:")
-                answer3  = int(raw_input("$5 $10 $15 $20 Custom\n"))
-
-                if answer3 == "Custom" or answer3 == "custom":
-                    answer4 = int(raw_input("Enter custom amount: "))
-                    wallet += answer4
-                else:
-                    wallet += answer3
-			
-            elif answer2 == "No" or answer2 == "no":
-                pass
-            else:
-                pass
     else:
         pass
     
@@ -67,7 +58,8 @@ def walletCheckAdd():
     print ("\nYour Receipt:")
     print("Wallet: $%1d" % (wallet))
     print("Case cost: $%1d" % (costOfCase))
-    print("Total money spent: $%1d\n" % (totalMoneySpent))
+    print("Total money spent: $%1d" % (totalMoneySpent))
+    print("Money added: $%1d\n" % (moneyAdded))
 
 
 def skinGradeOdds():
