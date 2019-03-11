@@ -72,35 +72,52 @@ def skinGradeOdds():
 
     if skinGradeProb >= 20.0 and skinGradeProb < 100.0:
     # drops a blue grade skin
-        skinGrade += "blue"
+        skinGrade += "Blue"
         print (skinGrade)
         
     elif skinGradeProb >= 3.0 and skinGradeProb < 20.0:
     # drops a purple grade skin
-        skinGrade += "purple"
+        skinGrade += "Purple"
         print (skinGrade)
         
     elif skinGradeProb >= 2.91 and skinGradeProb < 3.0:
     # drops a pink grade skin
-        skinGrade += "pink"
+        skinGrade += "Pink"
         print (skinGrade)
         
     elif skinGradeProb >= 2.70 and skinGradeProb < 2.91:
     # drops a red grade skin
-        skinGrade += "red"
+        skinGrade += "Red"
         print (skinGrade)
         
     elif skinGradeProb >= 2.62 and skinGradeProb < 2.7:
     # drops a yellow grade skin
-        skinGrade += "yellow"
+        skinGrade += "Yellow"
         print (skinGrade)
         
     else:
-        print ("error")
+        print ("Error")
 
 
-    #def skinGradeStatTrak():
-    # probabilitries of StatTrak or not
+def skinGradeStatTrak():
+# probabilitries of StatTrak or not
+
+    statTrak = ""
+
+    statTrakProb = random.randrange(0, 100)
+
+    if statTrakProb > 10 and statTrakProb < 100:
+    # drops a non-StatTrak skin grade
+        statTrakYorN = "Non-StatTrak"
+        print (statTrakYorN)
+
+    elif statTrakProb >= 0 and statTrakProb <= 10:
+    # drops a StatTrak skin grade
+        statTrakYorN = "StatTrak"
+        print (statTrakYorN)
+
+    else:
+        print ("Error")
 
 
 
@@ -110,8 +127,9 @@ def skinGradeOdds():
 # function calling
 #walletCheckAdd()
 
-skinGradeOdds()
+#skinGradeOdds()
 
+skinGradeStatTrak()
 
 
 
