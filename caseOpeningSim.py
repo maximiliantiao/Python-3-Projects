@@ -64,7 +64,7 @@ def walletCheckAdd():
 
 
 def skinGradeOdds():
-    # probabilities of certain grades: blue, purple, pink, red, yellow
+    # probabilities of certain grades: Mil-Spec, Restricted, Classified, Covert, Exceedingly Rare
     
     skinGrade = ""
         
@@ -72,27 +72,27 @@ def skinGradeOdds():
 
     if skinGradeProb >= 20.0 and skinGradeProb < 100.0:
     # drops a blue grade skin
-        skinGrade += "Blue"
+        skinGrade += "Mil-Spec"
         print (skinGrade)
         
     elif skinGradeProb >= 3.0 and skinGradeProb < 20.0:
     # drops a purple grade skin
-        skinGrade += "Purple"
+        skinGrade += "Restricted"
         print (skinGrade)
         
     elif skinGradeProb >= 2.91 and skinGradeProb < 3.0:
     # drops a pink grade skin
-        skinGrade += "Pink"
+        skinGrade += "Classified"
         print (skinGrade)
         
     elif skinGradeProb >= 2.70 and skinGradeProb < 2.91:
     # drops a red grade skin
-        skinGrade += "Red"
+        skinGrade += "Covert"
         print (skinGrade)
         
     elif skinGradeProb >= 2.62 and skinGradeProb < 2.7:
     # drops a yellow grade skin
-        skinGrade += "Yellow"
+        skinGrade += "Exceedingly Rare"
         print (skinGrade)
         
     else:
@@ -125,6 +125,7 @@ def skinGradeStatTrak():
 
 
 # function calling
+
 #walletCheckAdd()
 
 #skinGradeOdds()
