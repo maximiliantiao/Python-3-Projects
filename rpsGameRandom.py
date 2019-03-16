@@ -38,11 +38,6 @@ def startGame():
 # randomly generated choices for Player 1 and 2 in the game, Rock Paper Scissors
 def rpsRandom():
 
-    player1Score = 0
-    player2Score = 0
-    
-    player1Choice = ""
-    player2Choice = ""
 
     # randomly generate a number associated with a choice to Player 1
     randomForP1 = random.randrange(1, 4)
@@ -76,7 +71,7 @@ def rpsRandom():
 
 
 # point system for wins
-def pointSystem(player1Choice, player2Choice):
+def pointSystem():
 
     if player1Choice == "Rock":
 
@@ -85,12 +80,14 @@ def pointSystem(player1Choice, player2Choice):
             print("It's a tie!")
 
         elif player2Choice == "Paper":
+            
             player2Score += 1
             print("Player 2 wins!")
             print("Player 1 score: %1d" % (player1Score))
             print("Player 2 score: %1d" % (player2Score))
 
-        elif player1Choice == "Scissors":
+        elif player2Choice == "Scissors":
+            
             player1Score += 1
             print("Player 1 wins!")
             print("Player 1 score: %1d" % (player1Score))
@@ -99,6 +96,54 @@ def pointSystem(player1Choice, player2Choice):
         else:
             pass
 
+    elif player1Choice == "Paper":
+
+        if player2Choice == "Rock":
+            
+            player1Score += 1
+            print("Player 1 wins!")
+            print("Player 1 score: %1d" % (player1Score))
+            print("Player 2 score: %1d" % (player2Score))
+        
+        elif player2Choice == "Paper":
+            
+            print("It's a tie!")
+        
+        elif player2Choice == "Scissors":
+            
+            player2Score += 1
+            print("Player 2 wins!")
+            print("Player 1 score: %1d" % (player1Score))
+            print("Player 2 score: %1d" % (player2Score))
+        
+        else:
+            pass
+
+    elif player1Choice == "Scissors":
+
+        if player2Choice == "Rock":
+            
+            player1Score += 1
+            print("Player 1 wins!")
+            print("Player 1 score: %1d" % (player1Score))
+            print("Player 2 score: %1d" % (player2Score))
+        
+        elif player2Choice == "Paper":
+            
+            player1Score += 1
+            print("Player 1 wins!")
+            print("Player 1 score: %1d" % (player1Score))
+            print("Player 2 score: %1d" % (player2Score))
+        
+        elif player2Choice == "Scissors":
+            
+            print("It's a tie!")
+                
+        else:
+            pass
+
+    else:
+        pass
 
 
 
@@ -111,5 +156,7 @@ def pointSystem(player1Choice, player2Choice):
 startGame()
 
 rpsRandom()
+
+pointSystem()
 
 
