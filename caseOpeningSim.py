@@ -1,10 +1,7 @@
 # CSGO Danger Zone case opening simulator
-
 import time
 import random
 import decimal
-
-
 
 def walletCheckAdd():
     
@@ -16,21 +13,20 @@ def walletCheckAdd():
     print ("\nCurrent balance: $%1d" % (wallet))
     
     print ("\nWould you like to add funds to open Danger Zone case?")
-    answer2 =  raw_input("Yes or No?\n")
+    answer2 = input("Yes or No?")
     
     time.sleep(0.8)
     
     if answer2 == "No" or answer2 == "no":
-        wallet -= 2
-        totalMoneySpent += 2
         pass
     
     else:
         
         if answer2 == "Yes" or answer2 == "yes":
             print ("\nEnter amount to add:")
-            answer3  = int(raw_input("$5 $10 $15 $20 $50 $100\n"))
+            answer3  = int(input("$5 $10 $15 $20 $50 $100\n"))
             moneyAdded += answer3
+            wallet += answer3
             time.sleep(1)
             print ("\n$%1d has been added to your wallet" % (answer3))
             time.sleep(1)
@@ -42,7 +38,7 @@ def walletCheckAdd():
 
     print ("\nOpen Danger Zone case for $2?")
     
-    answer1 = raw_input("Yes or No?\n")
+    answer1 = input("Yes or No?\n")
 
     if answer1 == "Yes" or answer1 == "yes":
         
@@ -102,6 +98,8 @@ def skinGradeOdds():
 def skinGradeStatTrak():
 # probabilitries of StatTrak or not
 
+    time.sleep(10)
+
     statTrak = ""
 
     statTrakProb = random.randrange(0, 100)
@@ -121,35 +119,23 @@ def skinGradeStatTrak():
 
 
 
-
-
-
 # function calling
 
-#walletCheckAdd()
+walletCheckAdd()
 
-#skinGradeOdds()
+skinGradeOdds()
 
 skinGradeStatTrak()
 
+print("\nWould you like to open another case?")
+again = input("Yes or No?\n")
 
+if (again == "Yes" or again == "yes"):
+    walletCheckAdd()
 
+    skinGradeOdds()
 
-
-
-
-
-
-
-	
-			
-		
-
-		
-	
-	
-
-
-
-
+    skinGradeStatTrak()
+else:
+    exit()
 

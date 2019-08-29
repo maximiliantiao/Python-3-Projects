@@ -10,7 +10,7 @@ print("B. # of characters without spaces\n")
 print("C. # of lines in your document (Still needs word)\n")
 print(decorator + "\n")
 
-user_mode = raw_input("Enter mode: ")
+user_mode = input("Enter mode: ")
 print("\n")
 
 number_of_char_in_contents = 0
@@ -22,7 +22,7 @@ contents_readline = my_file.readline()
 
 
 if (user_mode == "A" or user_mode == "a"):
-    for char in contents:
+    for char in contents_read:
         if char in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()`-=~_+[]\;',./{|}:<>?\" ":
             number_of_char_in_contents += 1
         else:
@@ -31,7 +31,7 @@ if (user_mode == "A" or user_mode == "a"):
     print("This text file has " + str(number_of_char_in_contents) + " characters with spaces!\n\n")
 
 elif (user_mode == "B" or user_mode == "b"):
-    for char in contents:
+    for char in contents_readline:
         if char in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()`-=~_+[]\;',./{|}:<>?\"":
             number_of_char_in_contents += 1
         else:

@@ -17,7 +17,7 @@ player2Choice = ""
 
 def startGame(): # function to start the game, Rock Paper Scissors
 	
-    startGameYorN = raw_input("Would you like to start playing Rock Paper Scissors?\n")
+    startGameYorN = input("Would you like to start playing Rock Paper Scissors?\n")
 	
     if startGameYorN == "Yes" or startGameYorN == "yes":
     # Yes to start the game
@@ -198,7 +198,7 @@ rpsRandom()
 pointSystem()
 
 # continue playing game or not
-restartGame = raw_input("\nDo you want to play again? Press enter to continue or type 'exit' to leave. ")
+restartGame = input("\nDo you want to play again? Press enter to continue or type 'exit' to leave. ")
 
 player1Choice = ""
 player2Choice = ""
@@ -209,7 +209,7 @@ while restartGame == "":
 
     pointSystem()
 
-    restartGame = raw_input("\nDo you want to play again? Press enter to continue or type 'exit' to leave. ")
+    restartGame = input("\nDo you want to play again? Press enter to continue or type 'exit' to leave. ")
 
     player1Choice = ""
     player2Choice = ""

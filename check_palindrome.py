@@ -22,20 +22,20 @@ def check_palindrome(numbers):
         return "The number is not a palindrome!"
 
 
-number_input = raw_input("Enter a number: ")
+number_input = input("Enter a number: ")
 print("\n")
 print(check_palindrome(number_input))
 print("\n")
 
-yes_or_no = raw_input("Want to input another number? (Y / N): ")
+yes_or_no = input("Want to input another number? (Y / N): ")
 print("\n")
 
 while (yes_or_no == 'Y' or yes_or_no == 'y'):
-    number_input = raw_input("Enter a number: ")
+    number_input = input("Enter a number: ")
     print("\n")
     print(check_palindrome(number_input))
     print("\n")
 
-    yes_or_no = raw_input("Want to input another number? (Y / N): ")
+    yes_or_no = input("Want to input another number? (Y / N): ")
 print("\n")
 

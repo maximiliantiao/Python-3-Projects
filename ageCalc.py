@@ -1,22 +1,39 @@
-# age calculator
+# age calculator for fun
 
-def ageCalc():
+import time
+
+def ageCalc(age):
+
+    time.sleep(1)
+
+    print ("You have been alive for %0d days!\n" % (age * 365))
+
+    time.sleep(1)
+
+    print ("You have been alive for %0d hours!\n" % (age * 365 * 24))
+
+    time.sleep(1)
+
+    print ("You have been alive for %0d minutes!\n" % (age * 365 * 24 * 60))
+
+    time.sleep(1)
+
+    print ("You have been alive for %0d seconds!\n" % (age * 365 * 24 * 60 * 60))
+
+    time.sleep(1)
+
+    print ("You have been alive for %0d milliseconds!\n" % (age * 365 * 24 * 60 * 60 * 1000))
+
+    time.sleep(1)
+
+    print ("You have been alive for %0d microseconds!\n" % (age * 365 * 24 * 60 * 60 * 1000 * 1000000))
+
+    time.sleep(1)
+
+    print ("You have been alive for %0d nanoseconds!\n" % (age * 365 * 24 * 60 * 60 * 1000 * 1000000 * 1000000000))
+
+    time.sleep(1)
 
 
-    age = int(input("Please type in your age: "))
-
-    print ("You have been alive for " + (age * 365) + "days!")
-
-    print ("You have been alive for " + (age * 365 * 24) + "hours!")
-
-    print ("You have been alive for " + (age * 365 * 24 * 60) + "minutes!")
-
-    print ("You have been alive for " + (age * 365 * 24 * 60 * 60) + "seconds!")
-
-    print ("You have been alive for " + (age * 365 * 24 * 60 * 60 * 1000) + "milliseconds!")
-
-    print ("You have been alive for " + (age * 365 * 24 * 60 * 60 * 1000 * 1000000) + "microseconds!")
-
-    print ("You have been alive for " + (age * 365 * 24 * 60 * 60 * 1000 * 1000000 * 1000000000) + "nanoseconds!")
-
-ageCalc()
+age = int(input("Please type in your age: "))
+ageCalc(age)
