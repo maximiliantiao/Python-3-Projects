@@ -11,64 +11,74 @@ hour = current_time.strftime("%I")
 minutes = current_time.strftime("%M")
 AMorPM =  current_time.strftime("%p")
 
-print("Which did you want to check out?")
-print("1. HLTV News")
-print("2. New Posts on r/UCSC")
-print("3. New Posts on r/todayilearned")
+#print("Which did you want to check out?")
+#print("1. HLTV - Today's News")
+#print("2. HLTV - Today's Matches")
 
-which_check_out = input()
+#which_check_out = input()
+
+#if which_check_out == "1":
+'''
+resultA = requests.get("https://www.hltv.org")
+print(resultA.status_code)
+srcA = resultA.content
+
+soupA = BeautifulSoup(srcA, "html.parser")
+
+countA = 1
+
+for divA_tag in soupA.find_all("div", class_="standard-box standard-list")[0]:
+    headline = divA_tag.find("div", class_="newstext")
+    print(str(countA) + ". " + headline.string)
+    countA += 1
 
 print("\n")
 
-if which_check_out == "1":
+#elif which_check_out == "2":
 
-    resultA = requests.get("https://www.hltv.org")
-    print(resultA.status_code)
-    srcA = resultA.content
+resultB = requests.get("https://hltv.org")
 
-    soupA = BeautifulSoup(srcA, "html.parser")
+srcB = resultB.content
+soupB = BeautifulSoup(srcB, "html.parser")
 
-    countA = 1
+print("Today's Games\n")
 
-    for divA_tag in soupA.find_all("div", class_="standard-box standard-list")[0]:
-        headline = divA_tag.find("div", class_="newstext")
-        print(str(countA) + ". " + headline.string)
-        countA += 1
+for div_tag in soupB.find_all("a", class_="hotmatch-box a-reset"):
+    teamA = div_tag.find_all("span", class_="team")[0]
+    teamB = div_tag.find_all("span", class_="team")[1]
+    print(teamA.string + " vs " + teamB.string)
 
-    print("\n")
 
-elif which_check_out == "2":
+print("\n")
+'''
 
-    resultB = requests.get("https://www.reddit.com/r/UCSC/new/")
+resultC = requests.get("https://www.hltv.org/stats/players?startDate=2019-01-01&endDate=2019-12-31&rankingFilter=Top20")
+srcC = resultC.content
+print(resultC.status_code)
+soupC = BeautifulSoup(srcC, "lxml")
+print("Top Players - " + day_of_week + ", " + month + " " + day + ", " + year + "\n")
 
-    srcB = resultB.content
-    print(resultB.status_code)
-    soupB = BeautifulSoup(srcB, "html.parser")
+countB = 1
 
-    countB = 1
+for players in soupC.find_all("td", class_="playerCol"):
+    if countB < 11:
+        player = players.find("a")
+        country = players.find("img")
 
-    for divB_tag in soupB.find_all("div", class_="_2SdHzo12ISmrC8H86TgSCp _3wqmjmv3tb_k-PROt7qFZe"):
-        post_title = divB_tag.find("h3", class_="_eYtD2XCVieq6emjKBH3m")
-        print(str(countB) + ". " + post_title.string)
+        for rating in soupC.find_all("td", class_="ratingCol"):
+            print(str(countB) + ". " + player.string + " (" + country.attrs['title'] + ") - Rating:", rating.text)
+            break
+
         countB += 1
+    else:
+        print("\n")
+        exit()
 
-    print("\n")
 
-elif which_check_out == "3":
 
-    resultC = requests.get("https://www.reddit.com/r/todayilearned/new/")
 
-    srcC = resultC.content
 
-    soupC = BeautifulSoup(srcC, "html.parser")
 
-    count = 1
 
-    for div_tag in soupC.find_all("div", class_="_2SdHzo12ISmrC8H86TgSCp _3wqmjmv3tb_k-PROt7qFZe "):
-        today_I_learned_post = div_tag.find("h3", class_="_eYtD2XCVieq6emjKBH3m")
-        print(str(count) + ". " + today_I_learned_post)
-        count += 1
 
-    print("\n")
 
-elif
