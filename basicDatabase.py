@@ -412,47 +412,95 @@ mappedA = zip(book_genres, book_dates)
 mappedB = zip(book_titles, mappedA)
 database = set(mappedB)
 #print(database)
-'''
-Books with genres "horror" or "horror fiction"
-for entry in database:
-    split_entry = entry[1][0].split(", ")
-    if 'horror fiction' in split_entry:
-        print(entry[0])
-    elif 'horror' in split_entry:
-        print(entry[0])
+
+print("=" * 100)
+print("\n\nWelcome to the Stephen King Basic Book Database!\n\n")
+print("=" * 100)
+print("\nHow would you like to search?")
+print("1. By genre")
+print("2. By publishing year")
+print("3. Show all book titles")
+print("4. Show all book titles and publishing year")
+print("5. Show all book titles and genres\n")
+
+search_choice = input()
+
+if search_choice == "1":
+    print("Search which of the following genres")
+    print("1. Horror")
+    print("2. Fantasy\n")
+
+    search_choice_genre = input()
+    if search_choice_genre == "1":
+        # Books with genres "horror" or "horror fiction"
+        for entry in database:
+            split_entry = entry[1][0].split(", ")
+            if 'horror fiction' in split_entry:
+                print(entry[0])
+            elif 'horror' in split_entry:
+                print(entry[0])
+            else:
+                pass
+    elif search_choice_genre == "2":
+        # Books with genres "fantasy fiction" or "fantasy" or "Dark fantasy"
+        for entry in database:
+            split_entry = entry[1][0].split(", ")
+            if 'fantasy fiction' in split_entry:
+                print(entry[0])
+            elif 'fantasy' in split_entry:
+                print(entry[0])
+            elif 'Dark fantasy' in split_entry:
+                print(entry[0])
+            else:
+                pass
     else:
-        pass
-'''
+        print("Oops! This function has not yet been implemented. Coming soon!")
+        exit()
 
-'''
-Books published later than year 2000
-for entry in database:
-    if int(entry[1][1]) >= 2000:
-        print(entry[0])
-'''
+elif search_choice == "2":
+    print("What years would you like to search?")
+    print("1. After and on 2000")
+    print("2. Before 2000\n")
 
-'''
-Books published earlier than 2000
-
-for entry in database:
-    if int(entry[1][1]) < 2000:
-        print(entry[0])
-'''
-
-'''
-Books with genres "fantasy fiction" or "fantasy" or "Dark fantasy"
-
-for entry in database:
-    split_entry = entry[1][0].split(", ")
-    if 'fantasy fiction' in split_entry:
-        print(entry[0])
-    elif 'fantasy' in split_entry:
-        print(entry[0])
-    elif 'Dark fantasy' in split_entry:
-        print(entry[0])
+    search_choice_year = input()
+    if search_choice_year == "1":
+        # Books published later than year 2000
+        for entry in database:
+            if int(entry[1][1]) >= 2000:
+                print(entry[0])
+    elif search_choice_year == "2":
+        # Books published earlier than 2000
+        for entry in database:
+            if int(entry[1][1]) < 2000:
+                print(entry[0])
     else:
-        pass
-'''
+        print("Oops! This function has not yet been implemented. Coming soon!")
+        exit()
+
+elif search_choice == "3":
+    # Show all books with just titles
+    for entry in database:
+        print(entry[0]) 
+
+    exit()
+
+elif search_choice == "4":
+    # Show all books with just titles and year
+    for entry in database:
+        print(entry[0], "- " + entry[1][1])
+
+    exit()
+
+elif search_choice == "5":
+    # Show all books with just titles and their genres
+    for entry in database:
+        print(entry[0], "- " + entry[1][0])
+
+    exit()
+
+else:
+    print("Oops! This function has not yet been implemented. Coming soon!")
+    exit()
 
 
 
