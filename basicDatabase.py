@@ -416,91 +416,125 @@ database = set(mappedB)
 print("=" * 100)
 print("\n\nWelcome to the Stephen King Basic Book Database!\n\n")
 print("=" * 100)
-print("\nHow would you like to search?")
-print("1. By genre")
-print("2. By publishing year")
-print("3. Show all book titles")
-print("4. Show all book titles and publishing year")
-print("5. Show all book titles and genres\n")
 
-search_choice = input()
+while True:
+    print("\nWhat would you like to do?")
+    print("1. Search")
+    print("2. Add a book (Coming Soon)")
+    print("3. Take out a book (Coming Soon)")
+    print("4. Exit database")
+    to_do = input()
 
-if search_choice == "1":
-    print("Search which of the following genres")
-    print("1. Horror")
-    print("2. Fantasy\n")
+    if to_do == "1":
 
-    search_choice_genre = input()
-    if search_choice_genre == "1":
-        # Books with genres "horror" or "horror fiction"
-        for entry in database:
-            split_entry = entry[1][0].split(", ")
-            if 'horror fiction' in split_entry:
-                print(entry[0])
-            elif 'horror' in split_entry:
-                print(entry[0])
+        print("\nHow would you like to search?")
+        print("1. By genre")
+        print("2. By publishing year")
+        print("3. Show all book titles")
+        print("4. Show all book titles and publishing year")
+        print("5. Show all book titles and genres\n")
+
+        search_choice = input()
+        print("\n")
+
+        if search_choice == "1":
+            print("Search which of the following genres")
+            print("1. Horror")
+            print("2. Fantasy\n")
+
+            search_choice_genre = input()
+            if search_choice_genre == "1":
+                # Books with genres "horror" or "horror fiction"
+                for entry in database:
+                    split_entry = entry[1][0].split(", ")
+                    if 'horror fiction' in split_entry:
+                        print(entry[0])
+                    elif 'horror' in split_entry:
+                        print(entry[0])
+                    else:
+                        pass
+
+            elif search_choice_genre == "2":
+                # Books with genres "fantasy fiction" or "fantasy" or "Dark fantasy"
+                for entry in database:
+                    split_entry = entry[1][0].split(", ")
+                    if 'fantasy fiction' in split_entry:
+                        print(entry[0])
+                    elif 'fantasy' in split_entry:
+                        print(entry[0])
+                    elif 'Dark fantasy' in split_entry:
+                        print(entry[0])
+                    else:
+                        pass
+
             else:
-                pass
-    elif search_choice_genre == "2":
-        # Books with genres "fantasy fiction" or "fantasy" or "Dark fantasy"
-        for entry in database:
-            split_entry = entry[1][0].split(", ")
-            if 'fantasy fiction' in split_entry:
-                print(entry[0])
-            elif 'fantasy' in split_entry:
-                print(entry[0])
-            elif 'Dark fantasy' in split_entry:
-                print(entry[0])
+                print("Oops! This function has not yet been implemented. Coming soon!")
+
+        elif search_choice == "2":
+            print("What years would you like to search?")
+            print("1. After and on 2000")
+            print("2. Before 2000\n")
+
+            search_choice_year = input()
+            if search_choice_year == "1":
+                # Books published later than year 2000
+                for entry in database:
+                    if int(entry[1][1]) >= 2000:
+                        print(entry[0])
+
+            elif search_choice_year == "2":
+                # Books published earlier than 2000
+                for entry in database:
+                    if int(entry[1][1]) < 2000:
+                        print(entry[0])
+
             else:
-                pass
-    else:
-        print("Oops! This function has not yet been implemented. Coming soon!")
+                print("Oops! This function has not yet been implemented. Coming soon!")
+                exit()
+
+        elif search_choice == "3":
+            # Show all books with just titles
+            for entry in database:
+                print(entry[0])
+
+        elif search_choice == "4":
+            # Show all books with just titles and year
+            for entry in database:
+                print(entry[0], "- " + entry[1][1])
+
+        elif search_choice == "5":
+            # Show all books with just titles and their genres
+            for entry in database:
+                print(entry[0], "- " + entry[1][0])
+
+        else:
+            print("Oops! This function has not yet been implemented. Coming soon!")
+            exit()
+    '''
+    elif to_do == "2":
+        print("Add a book")
+
+        print("Title: ")
+        add_title = input()
+
+        print("Genre: ")
+        add_genre = input()
+
+        print("Publishing year: ")
+        add_year = input()
+
+        book_titles.append(add_title)
+        book_genres.append(add_genre)
+        book_dates.append(add_year)
+
+    elif to_do == "3":
+        print("Delete a book")'''
+
+    elif to_do == "4":
         exit()
 
-elif search_choice == "2":
-    print("What years would you like to search?")
-    print("1. After and on 2000")
-    print("2. Before 2000\n")
-
-    search_choice_year = input()
-    if search_choice_year == "1":
-        # Books published later than year 2000
-        for entry in database:
-            if int(entry[1][1]) >= 2000:
-                print(entry[0])
-    elif search_choice_year == "2":
-        # Books published earlier than 2000
-        for entry in database:
-            if int(entry[1][1]) < 2000:
-                print(entry[0])
     else:
-        print("Oops! This function has not yet been implemented. Coming soon!")
-        exit()
-
-elif search_choice == "3":
-    # Show all books with just titles
-    for entry in database:
-        print(entry[0]) 
-
-    exit()
-
-elif search_choice == "4":
-    # Show all books with just titles and year
-    for entry in database:
-        print(entry[0], "- " + entry[1][1])
-
-    exit()
-
-elif search_choice == "5":
-    # Show all books with just titles and their genres
-    for entry in database:
-        print(entry[0], "- " + entry[1][0])
-
-    exit()
-
-else:
-    print("Oops! This function has not yet been implemented. Coming soon!")
-    exit()
+        print("Invalid choice")
 
 
 
