@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import datetime
+import time
 
 current_time = datetime.datetime.now()
 day_of_week = current_time.strftime("%A")
@@ -9,14 +10,20 @@ day = current_time.strftime("%d")
 year = current_time.strftime("%Y")
 hour = current_time.strftime("%I")
 minutes = current_time.strftime("%M")
-AMorPM =  current_time.strftime("%p")
+AMorPM = current_time.strftime("%p")
 
+print("=" * 100)
+print("\nWelcome to the HLTV Parser\n")
+print("=" * 100)
 
-print("Which did you want to check out?")
+time.sleep(1)
+print("\nWhich did you want to check out?")
+time.sleep(0.2)
 print("1. HLTV - Today's News")
+time.sleep(0.2)
 print("2. HLTV - Today's Matches")
+time.sleep(0.2)
 print("3. HLTV - 2019's Top 10 Best Players")
-
 
 which_check_out = input()
 
@@ -26,12 +33,14 @@ if which_check_out == "1":
     #print(resultA.status_code)
     srcA = resultA.content
     soupA = BeautifulSoup(srcA, "html.parser")
-    countA = 1
+
+    print("\n")
+    print("HTLV News - " + day_of_week + " " + month + " " + day + " " + year + "\n")
 
     for divA_tag in soupA.find_all("div", class_="standard-box standard-list")[0]:
         headline = divA_tag.find("div", class_="newstext")
-        print(str(countA) + ". " + headline.string)
-        countA += 1
+        print("- " + headline.string)
+        time.sleep(0.2)
 
     print("\n")
 
@@ -40,12 +49,13 @@ elif which_check_out == "2":
     resultB = requests.get("https://hltv.org")
     srcB = resultB.content
     soupB = BeautifulSoup(srcB, "html.parser")
-    print("Today's Games\n")
+    print("\nToday's Games\n")
 
-    for div_tag in soupB.find_all("a", class_="hotmatch-box a-reset"):
+    for div_tag in soupB.find_all("div", class_="teamrows"):
         teamA = div_tag.find_all("span", class_="team")[0]
         teamB = div_tag.find_all("span", class_="team")[1]
-        print(teamA.string + " vs " + teamB.string)
+        print(teamA.string + " vs. " + teamB.string)
+        time.sleep(0.2)
 
     print("\n")
 
@@ -55,28 +65,49 @@ elif which_check_out == "3":
     srcC = resultC.content
     # print(resultC.status_code)
     soupC = BeautifulSoup(srcC, "lxml")
-    print("Top Players - " + day_of_week + ", " + month + " " + day + ", " + year + "\n")
+    print("\nTop Players - " + day_of_week + ", " + month + " " + day + ", " + year + "\n")
 
-    countB = 1
-    countC = 0
-    countD = 1
+    playerNames = []
+    playerTeams = []
+    playerKDRatio = []
+    playerMapNum = []
+    playerKDDiff = []
+    player2Ratio = []
+    count = 1
+
     for players in soupC.find_all("td", class_="playerCol"):
-        if countB < 11:
-            player = players.find("a")
-            team = soupC.find_all("img", class_="logo")
-            kd = soupC.find_all("td", class_="statsDetail")
+        player = players.find("a")
+        playerNames.append(player.string)
 
-            print(str(countB) + ". " + player.string + " (" + team[countC].attrs['alt'] + ") - " + kd[countD].text + " K/D")
-            countB += 1
-            countC += 1
-            countD += 2
+    for teamCol in soupC.find_all("td", class_="teamCol"):
+        team = teamCol.find("img", class_="logo")
+        playerTeams.append(team.attrs['alt'])
 
+    for statsDetail in soupC.find_all("td", class_="statsDetail"):
+        if float(statsDetail.string) < 3.0:
+            playerKDRatio.append(statsDetail.string)
         else:
-            print("\n")
-            exit()
-else :
-    print("Choose a valid option!")
+            playerMapNum.append(statsDetail.string)
 
+    for kdDiff in soupC.find_all("td", class_="kdDiffCol"):
+        playerKDDiff.append(kdDiff.string)
+
+    for rankingRatio in soupC.find_all("td", class_="ratingCol"):
+        player2Ratio.append(rankingRatio.string)
+
+    for x in range(10):
+        print(str(count) + ". " + playerNames[x] + " (" + playerTeams[x] + ")")
+        print("Maps: " + playerMapNum[x])
+        print("K-D Diff: " + playerKDDiff[x])
+        print("K/D: " + playerKDRatio[x])
+        print("Rating 2.0: " + player2Ratio[x])
+        print("\n")
+        count += 1
+        time.sleep(0.5)
+
+
+else:
+    print("Choose a valid option!")
 
 
 
