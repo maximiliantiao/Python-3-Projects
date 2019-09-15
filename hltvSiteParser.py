@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 import time
+import keyboard
 
 current_time = datetime.datetime.now()
 day_of_week = current_time.strftime("%A")
@@ -51,11 +52,10 @@ elif which_check_out == "2":
     soupB = BeautifulSoup(srcB, "html.parser")
     print("\nToday's Games\n")
 
-    for div_tag in soupB.find_all("div", class_="teamrows"):
-        teamA = div_tag.find_all("span", class_="team")[0]
-        teamB = div_tag.find_all("span", class_="team")[1]
+    for a_tag in soupB.find_all("a", class_="hotmatch-box"):
+        teamA = a_tag.find_all("span", class_="team")[0]
+        teamB = a_tag.find_all("span", class_="team")[1]
         print(teamA.string + " vs. " + teamB.string)
-        time.sleep(0.2)
 
     print("\n")
 
@@ -95,16 +95,37 @@ elif which_check_out == "3":
     for rankingRatio in soupC.find_all("td", class_="ratingCol"):
         player2Ratio.append(rankingRatio.string)
 
-    for x in range(10):
-        print(str(count) + ". " + playerNames[x] + " (" + playerTeams[x] + ")")
-        print("Maps: " + playerMapNum[x])
-        print("K-D Diff: " + playerKDDiff[x])
-        print("K/D: " + playerKDRatio[x])
-        print("Rating 2.0: " + player2Ratio[x])
-        print("\n")
-        count += 1
-        time.sleep(0.5)
+    print("What would you like to see?")
+    print("1. Each player listed out one by one")
+    print("2. List out all players")
 
+    listHow = input()
+
+    if listHow == "1":
+        print("As each player is listed, you must either press return to continue down the list")
+        print("or press 'N' to stop")
+        x = 0
+        count = 1
+
+        continueOrNot = input()
+        while continueOrNot == "":
+            print(str(count) + ". " + playerNames[x] + " (" + playerTeams[x] + ")")
+            print("Maps: " + playerMapNum[x])
+            print("K-D Diff: " + playerKDDiff[x])
+            print("K/D: " + playerKDRatio[x])
+            print("Rating 2.0: " + player2Ratio[x])
+            x += 1
+            count += 1
+            continueOrNot = input()
+    else:
+        for x in range(10):
+            print(str(count) + ". " + playerNames[x] + " (" + playerTeams[x] + ")")
+            print("Maps: " + playerMapNum[x])
+            print("K-D Diff: " + playerKDDiff[x])
+            print("K/D: " + playerKDRatio[x])
+            print("Rating 2.0: " + player2Ratio[x])
+            count += 1
+            time.sleep(0.5)
 
 else:
     print("Choose a valid option!")
