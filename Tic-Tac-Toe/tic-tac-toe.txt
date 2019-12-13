@@ -1,0 +1,135 @@
+Tic-Tac-Toe
+
+Board Display
+-------------
+| * | * | * |
+| * | X | * |
+| O | * | * |
+-------------
+
+# of players: 2
+
+Rules:
+Each player takes a turn, decide who plays with X's or O's
+Player cannot take over a space where an X or O has already occupied
+
+End of Game scenarios:
+1. X's win
+2. O's win
+3. Draw (no one wins)
+
+Pseudo-code
+
+Functions:
+
+valid_coord(row_num, col_num, 3x3 array)
+  if coordinate at 3x3 array == '*'
+    coordinate is valid, return true
+  else
+    coordinate not valid, return false
+end function
+
+end_of_game(3x3 array)
+  Track number of X's and O's
+
+  -> Check 1st, 2nd, and 3rd rows
+  iterate from 0 to 2 (use i)
+    < declare counter for X's and O's >
+    iterate through each row from 0 to 2 (use j)
+      each element will be denoted with array[i][j]
+      if element == 'O'
+        num_of_O += 1;
+      elif element == 'X'
+        num_of_X += 1;
+      else
+        do nothing
+    if num_of_X == 3 or num_of_O == 3
+      return true
+  end iteration
+
+  -> Check 1st, 2nd, and 3rd columns
+  iterate from 0 to 2 (use j)
+    < declare counter for X's and O's >
+    iterate through each column from 0 to 2 (use i)
+      each element will be denoted with array[i][j]
+      if element == 'O'
+        num_of_O += 1;
+      elif element == 'X'
+        num_of_X += 1;
+      else
+        do nothing
+    if num_of_X == 3 or num_of_O == 3
+      return true
+  end iteration
+
+  -> Check left->right diagonal
+  iterate from 0 to 2 (use i)
+    < declare counter for X's and O's >
+    each element will be denoted with array[i][i]
+    if element == 'O'
+        num_of_O += 1;
+      elif element == 'X'
+        num_of_X += 1;
+      else
+        do nothing
+    if num_of_X == 3 or num_of_O == 3
+      return true
+  end iteration
+
+  -> Check right->left diagonal
+  iterate from 2 to 0 (use i)
+    < declare j (counter for index of array) and counter for X's and O's >
+    each element will be denoted with array[j][i]
+    if element == 'O'
+        num_of_O += 1;
+      elif element == 'X'
+        num_of_X += 1;
+      else
+        do nothing
+
+    increment j by 1
+
+    if num_of_X == 3 or num_of_O == 3
+      return true
+  end iteration
+
+  At this moment in the function, there is no win so just return false
+
+end function
+
+main:
+
+3 x 3 array to hold X's and O's
+turns = 0
+row_coord = 0
+col_coord = 0
+player = 'X'
+valid_coord = false
+end_game = false
+
+-> max number of turns is 9
+while (turns < 9)
+  while (!valid_coord)
+    get coordinates using input() and int() for both row and column coordinates
+    check if coordinates are valid -> valid_coord -> returns true / false, set equal to valid_coord
+  end while
+
+  valid coordinates will be mapped onto the board
+  (can use ternary operator to either use 'X' or 'O' when mapping on array, odd -> 'X', even -> 'O')
+  check for End of Game scenarios -> end_of_game -> returns true / false
+
+  if end_game == true
+    print Board Display
+    print Player 1 / Player 2 wins!
+    end_game = true
+    break out of loop
+  else
+    continue the game
+  increment turns by 1
+end while
+
+if end_game == true
+  exit program
+else
+  print "Draw"
+  exit program
