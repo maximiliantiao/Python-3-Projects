@@ -1,0 +1,19 @@
+Censorship Program
+
+Basis:
+This program will essentially act as a censor to obscene words from either standard input or from a file
+
+Source:
+badwords.txt (https://www.cs.cmu.edu/~biglou/resources/)
+
+Command-Line Options:
+-v             : verbose option (display number of words inputted, number of words censored, and number of words after censorship)
+-i input_file  : user-specified input file to censor (default is standard input)
+-o output_file : user-specified output file (default is standard output)
+
+Setup:
+First read in obscene words from badwords.txt and append them into a bad_words array
+
+Reading Standard Input
+Use input() to get input from user and split the input using split() so input is converted into an array so we can censor obscene words
+After reading input, print out the censored response to screen if user has raise the verbose (-v) flag
