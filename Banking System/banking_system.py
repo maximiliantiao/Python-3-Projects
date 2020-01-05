@@ -1,4 +1,7 @@
 from getpass import getpass
+from datetime import datetime
+from datetime import date
+import calendar
 import sqlite3
 import os
 
@@ -12,7 +15,8 @@ class Banking_Sys():
 		self.acc_amount = 0
 		self.acc_username = ""
 		self.acc_password = ""
-		pass
+		self.acc_creation_date = ""
+		self.acc_last_login = ""
 
 	# 
 	# Authenticate user login information. Return True if login information is correct. Otherwise, return False
@@ -36,6 +40,8 @@ class Banking_Sys():
 		self.acc_amount = user[3]
 		self.acc_username = user[4]
 		self.acc_password = user[5]
+		self.acc_creation_date = user[6]
+		self.acc_last_login = user[7]
 
 		if self.acc_username == user_name and self.acc_password == pass_word:
 			conn.commit()
@@ -50,7 +56,9 @@ class Banking_Sys():
 	# Display welcome message and brief user with preliminary information of bank account
 	#
 	def get_info(self):
+		day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 		print("\n**** Welcome %s! ****\n" % (self.acc_name))
+		print("LAST LOGIN : %s\n" % (self.acc_last_login))
 		print("Your %s account currently have $%d in your account." % (self.acc_type, self.acc_amount))
 
 	#
@@ -104,6 +112,12 @@ class Banking_Sys():
 
 if __name__ == '__main__':
 	banking = Banking_Sys()
+	#login = datetime.now()
+	#print("%d-%d-%d" % (login.month, login.day, login.year))
+	#print("%d:%d:%d" % (login.hour, login.minute, login.second))
+	#day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+	#print(type(calendar.weekday(login.year, login.month, login.day)))
+	#exit(0)
 	while True:
 		print("\nWelcome to Simple Banking!")
 		print("1. Create a new account")
@@ -113,6 +127,9 @@ if __name__ == '__main__':
 		option = int(input("Enter here: "))
 
 		if option == 1:
+			# Track date of account creation, and log first datetime of login
+			acc_creation = str(date.today())
+			acc_login = str(datetime.now())
 			acc_name = str(input("Name: "))
 			acc_dob = str(input("Date of Birth (MM/DD/YYYY): "))
 			acc_username = str(input("Username: "))
@@ -135,8 +152,8 @@ if __name__ == '__main__':
 			if os.stat('bank_info.db').st_size == 0:
 				conn = sqlite3.connect('bank_info.db')
 				c = conn.cursor()
-				c.execute('''CREATE TABLE users_info (name text, dob text, account_type text, amount real, username text, password text)''')
-				c.execute('INSERT INTO users_info VALUES (?, ?, ?, ?, ?, ?)', (acc_name, acc_dob, acc_type, acc_amount, acc_username, acc_password))
+				c.execute('''CREATE TABLE users_info (name text, dob text, account_type text, amount real, username text, password text, date_created text, last_login text)''')
+				c.execute('INSERT INTO users_info VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (acc_name, acc_dob, acc_type, acc_amount, acc_username, acc_password, acc_creation, acc_login))
 				
 				conn.commit()
 				conn.close()
@@ -144,7 +161,7 @@ if __name__ == '__main__':
 			else:
 				conn = sqlite3.connect('bank_info.db')
 				c = conn.cursor()
-				c.execute('INSERT INTO users_info VALUES (?, ?, ?, ?, ?, ?)', (acc_name, acc_dob, acc_type, acc_amount, acc_username, acc_password))
+				c.execute('INSERT INTO users_info VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (acc_name, acc_dob, acc_type, acc_amount, acc_username, acc_password, acc_creation, acc_login))
 				conn.commit()
 				conn.close()
 
@@ -211,7 +228,7 @@ if __name__ == '__main__':
 					print("Incorrect username or password!")
 
 		elif option == 3:
-			print("Thank you for using Simple Banking. Goodbye!")
+			print("\nThank you for using Simple Banking. Goodbye!\n")
 			exit(0)
 		else:
 			print("Invalid option. Enter a valid option!")
